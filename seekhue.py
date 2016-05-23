@@ -1,16 +1,49 @@
 from PIL import Image
-from PIL import ImagePalette
+import colorsys
 
-im = Image.open('../codeguild/frontend/img/008.102.1.2_2768.png')
-im2 = Image.open('../codeguild/frontend/img/008.102.1.2_2768.png').convert('P')
+def open_image(source):
+    return Image.open(source)
 
-print(im.format, im.size, im.mode)
+def resize_image(image):
+    ratio = image.size[0] / image.size[1]
+    width = 1080
+    height = int(width / ratio)
+    return image.resize((width, height))
 
-print(im2.format, im2.size, im2.mode)
+def get_color_data_from_image(image):
+    return image.getdata()
 
-print(sorted(im2.getpalette()))
+def hsv(x):
+    to_float = lambda x: x / 255.0
+    (r, g, b) = map(to_float, x)
+    h, s, v = colorsys.rgb_to_hsv(r, g, b)
+    h = h if 0 < h else 1
+    return h, s, v
+
+def hls(x):
+    to_float = lambda x: x / 255.0
+    (r, g, b) = map(to_float, x)
+    h, l, s = colorsys.rgb_to_hls(r, g, b)
+    h = h if 0 < h else 1
+    return h, l, s
 
 
-px = im.load()
+def main():
+    im = open_image('test_imgs/van_gogh_starry_night.jpg')
 
-im.show()
+    if im.size[0] > 1080:
+        im = resize_image(im)
+
+    data = get_color_data_from_image(im)
+
+    rainbow = sorted(data, key=hsv)
+
+    new_image = Image.new('RGB', (im.size[0], im.size[1]))
+    new_image.putdata(rainbow)
+
+    new_image.show()
+
+
+
+if __name__=="__main__":
+    main()
