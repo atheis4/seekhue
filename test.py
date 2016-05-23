@@ -1,7 +1,7 @@
 from PIL import Image
 import math
 
-im = Image.open('../codeguild/frontend/img/008.102.1.2_2768.png', 'r')
+im = Image.open('test_imgs/pollock.jpg', 'r')
 arr = im.load() #pixel data stored in this 2D array
 
 def rot(A, n, x1, y1): #this is the function which rotates a given block
@@ -14,10 +14,11 @@ def rot(A, n, x1, y1): #this is the function which rotates a given block
         for j in range(n):
             arr[x1+i,y1+j] = temple[n-1-i][n-1-j]
 
+print(im.size)
 
-xres = 1800
-yres = 2400
-BLKSZ = 1 #blocksize
+xres = 1000
+yres = 1300
+BLKSZ = 25 #blocksize
 for i in range(2, BLKSZ+1):
     for j in range(int(math.floor(float(xres)/float(i)))):
         for k in range(int(math.floor(float(yres)/float(i)))):
@@ -26,6 +27,7 @@ for i in range(3, BLKSZ+1):
     for j in range(int(math.floor(float(xres)/float(BLKSZ+2-i)))):
         for k in range(int(math.floor(float(yres)/float(BLKSZ+2-i)))):
             rot(arr, BLKSZ+2-i, j*(BLKSZ+2-i), k*(BLKSZ+2-i))
+
 
 im.show()
 
