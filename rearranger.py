@@ -1,51 +1,56 @@
+"""Rearranger.py Docstring."""
+
 from PIL import Image
 
+
 def open_image(source):
+    """Fill Docstring."""
     return Image.open(source)
 
+
 def resize_img(image):
+    """Fill Docstring."""
     ratio = image.size[0] / image.size[1]
     width = 1080
     height = int(width / ratio)
     return image.resize((width, height))
 
+
 def get_data_from_im(image):
+    """Fill Docstring."""
     return image.getdata()
 
-def rearrange_data(data):
-    return list(sorted(data))
 
 def create_new_img_for_sort(image):
+    """Fill Docstring."""
     return Image.new('RGB', (image.size[0], image.size[1]))
 
-def put_data_into_new_image(new_im, sorted_data):
-    return new_im.putdata(sorted_data)
 
 def sort_rgb_to_grb(image):
-    grb_values = []
+    """Fill Docstring."""
+    reverse_data = []
 
     for r, g, b in image.getdata():
-        reverse_data.append((b, g, r))
+        reverse_data.append((b, r, g))
 
-
+    return reverse_data
 
 
 def main():
-    im = open_image('test_imgs/van_gogh_6.jpg')
+    """."""
+    im = open_image('test_imgs/ernst_1.jpg')
 
     if im.size[0] > 1080:
         im = resize_img(im)
 
-    data = get_data_from_im(im)
-    sorted_data = rearrange_data(data)
+    reverse_data = sort_rgb_to_grb(im)
 
     new_im = create_new_img_for_sort(im)
-    new_im.putdata(sorted_data)
+    new_im.putdata(reverse_data)
 
     new_im.show()
+    new_im.save('test_imgs/BRG_ernst_1.jpg')
 
 
-
-
-if __name__=="__main__":
+if __name__ == '__main__':
     main()
