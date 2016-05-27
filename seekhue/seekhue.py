@@ -55,7 +55,7 @@ def main():
     """Fill Docstring."""
     im = open_file_as_pil_image('test_imgs/008.010.6.1_206.png')
 
-    if im.size[0] or im.size[1] > 1080:
+    if im.size[0] > 1080 or im.size[1] > 1080:
         im = resize_pil_image(im)
 
     rgb_data = get_data_from_pil_image(im)
