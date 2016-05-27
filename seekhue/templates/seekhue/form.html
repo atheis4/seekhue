@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Seek Hue - Color Quantizer</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'seekhue/style.css' %}">
+  </head>
+  <div class="container">
+    <body>
+      <header>
+        <h1></h1>
+        <h2></h2>
+      </header>
+
+      <section>
+
+          <form action="{% url 'ack' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image-source">
+            <input type="submit">
+          </form>
+
+      </section>
+
+      <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+      <script src="{% static 'seekhue/seekhue.js' %}"></script>
+    </body>
+  </div>
+</html>
