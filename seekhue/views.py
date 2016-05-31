@@ -13,7 +13,7 @@ def my_image(request):
 
 
 def render_index(request):
-    """Docstring."""
+    """Render index with previously transformed images in django template."""
     image_list = logic.return_paintings_from_db()
 
     template_args = {
@@ -29,10 +29,20 @@ def render_form(request):
 
 
 def render_ack(request):
-    """Docstring."""
+    """."""
     img_file = request.FILES['image-source']
-    sorted_jpg_file = logic.return_sorted_jpg_object(img_file)
 
-    logic.create_painting_model_from_file(img_file, sorted_jpg_file)
+    pil_image = logic.create_and_resize_pil_image(img_file)
+    sorted_pil_image = logic.create_sorted_pil_image(pil_image)
+
+    original_django_file = logic.create_django_file(pil_image)
+    sorted_django_file = logic.create_django_file(sorted_pil_image)
+
+    django_file_tuple = logic.name_django_file_objects(
+        img_file,
+        original_django_file,
+        sorted_django_file
+    )
+    logic.create_painting_model(django_file_tuple)
 
     return render(request, 'seekhue/ack.html', {})

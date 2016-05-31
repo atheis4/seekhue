@@ -14,8 +14,17 @@
       </header>
 
       <section>
+
+      </section>
+
+      <section>
         {% for image in image_list %}
-        <div><img src="{{ image.source.url }}"></div>
+        <div class="img-container">
+          <a><img src="{{ image.source.url }}"></a>
+        </div>
+        <div class="img-container">
+          <a><img src="{{ image.seekhue_sort.url }}"></a>
+        </div>
         {% endfor %}
       </section>
 
