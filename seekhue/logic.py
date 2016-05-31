@@ -12,8 +12,8 @@ def create_painting_model_from_file(img_file, sorted_img_file):
     """Docstring for f(x)."""
     new_painting = models.Painting(
         source=img_file,
-        seekhue_sort=sorted_img_file,
     )
+    new_painting.seekhue_sort.save('somename', sorted_img_file)
     new_painting.save()
 
 
@@ -42,5 +42,4 @@ def return_sorted_jpg_object(img_file):
 
     temporary_jpg_file = File(io.BytesIO())
     sorted_im.save(temporary_jpg_file, format='jpeg')
-
     return temporary_jpg_file

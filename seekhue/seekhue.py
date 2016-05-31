@@ -13,22 +13,20 @@ def open_file_as_pil_image(source_file):
 def create_empty_pil_image(pil_image):
     """Create an empty PIL Image.
 
-    Returns an empty PIL image with the same dimensions as the first PIL Image.
+    Returns a new PIL image in RGB mode with the same dimensions as the PIL
+    Image object argument.
     """
     return Image.new('RGB', (pil_image.size[0], pil_image.size[1]))
 
 
 def resize_pil_image(image):
     """Resize PIL image object, fixing largest dimension to 1080px."""
-    width = image.size[0]
-    height = image.size[1]
+    width, height = image.size[0], image.size[1]
     ratio = width / height
     if ratio >= 1:
-        width = 1080
-        height = int(width / ratio)
+        width, height = 1080, int(width / ratio)
     else:
-        height = 1080
-        width = int(height * ratio)
+        height, width = 1080, int(height * ratio)
     return image.resize((width, height))
 
 
@@ -53,7 +51,7 @@ def refactor_and_sort_data(color_data):
 
 def main():
     """Fill Docstring."""
-    im = open_file_as_pil_image('test_imgs/008.010.6.1_206.png')
+    im = open_file_as_pil_image('test_imgs/rothko_5.png')
 
     if im.size[0] > 1080 or im.size[1] > 1080:
         im = resize_pil_image(im)
@@ -64,7 +62,7 @@ def main():
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_rgb_data)
 
-    sorted_im.save('test_imgs/hls_sort_008.010.6.1_206.png')
+    sorted_im.save('test_imgs/hls_sort_rothko_5.png')
 
 
 if __name__ == '__main__':
