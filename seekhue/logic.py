@@ -8,38 +8,63 @@ from . import models
 from . import seekhue
 
 
-def create_painting_model_from_file(img_file, sorted_img_file):
-    """Docstring for f(x)."""
+def create_and_resize_pil_image(img_file):
+    """Open image file as PIL Image and resize if necessary."""
+    pil_image = seekhue.open_file_as_pil_image(img_file)
+
+    if pil_image.size[0] > 1080 or pil_image.size[1] > 1080:
+        pil_image = seekhue.resize_pil_image(pil_image)
+
+    return pil_image
+
+
+def create_sorted_pil_image(pil_image):
+    """Extract, sort, and place refactored pixel data into new PIL object.
+
+    Takes a PIL Image as input to extract pixel data from and use as
+    template for empty PIL Image oject.
+    """
+    pixel_data = pil_image.getdata()
+    sorted_pixel_data = seekhue.refactor_and_sort_data(pixel_data)
+
+    sorted_pil_image = seekhue.create_empty_pil_image(pil_image)
+    sorted_pil_image.putdata(sorted_pixel_data)
+    return sorted_pil_image
+
+
+def create_django_file(pil_img):
+    """Create a django compatable file object of a pil image."""
+    django_file = File(io.BytesIO())
+    pil_img.save(django_file, format='jpeg')
+
+    return django_file
+
+
+def name_django_file_objects(img_file, original_file_obj, sorted_file_obj):
+    """Set name property for django file obejcts."""
+    image_name = img_file.name
+
+    original_file_obj.name = image_name
+    sorted_file_obj.name = 'sorted_' + image_name
+
+    return (original_file_obj, sorted_file_obj)
+
+
+def create_painting_model(file_obj_tuple):
+    """Take a tuple of django compatible files and create painting model."""
+    original_file, sorted_file = file_obj_tuple[0], file_obj_tuple[1]
     new_painting = models.Painting(
-        source=img_file,
+        source=original_file,
+        seekhue_sort=sorted_file,
     )
-    new_painting.seekhue_sort.save('somename', sorted_img_file)
     new_painting.save()
 
 
 def return_paintings_from_db():
-    """Docstring for f(x)."""
+    """."""
     return models.Painting.objects.all()
 
 
 def return_painting_by_id(id):
     """."""
     return models.Painting.objects.get(id=id)
-
-
-def return_sorted_jpg_object(img_file):
-    """."""
-    im = seekhue.open_file_as_pil_image(img_file)
-
-    if im.size[0] > 1080 or im.size[1] > 1080:
-        im = seekhue.resize_pil_image(im)
-
-    rgb_data = seekhue.get_data_from_pil_image(im)
-    sorted_rgb_data = seekhue.refactor_and_sort_data(rgb_data)
-
-    sorted_im = seekhue.create_empty_pil_image(im)
-    sorted_im.putdata(sorted_rgb_data)
-
-    temporary_jpg_file = File(io.BytesIO())
-    sorted_im.save(temporary_jpg_file, format='jpeg')
-    return temporary_jpg_file

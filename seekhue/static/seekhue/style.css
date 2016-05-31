@@ -1,3 +1,22 @@
+/*================
+SeekHue Stylesheet
+================*/
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-container {
+  flex: 1;
+  margin: 0 auto;
+}
+
 img {
-  max-width: 80%;
+  max-width: 90%;
 }

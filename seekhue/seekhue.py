@@ -11,11 +11,7 @@ def open_file_as_pil_image(source_file):
 
 
 def create_empty_pil_image(pil_image):
-    """Create an empty PIL Image.
-
-    Returns a new PIL image in RGB mode with the same dimensions as the PIL
-    Image object argument.
-    """
+    """Create an empty PIL Image."""
     return Image.new('RGB', (pil_image.size[0], pil_image.size[1]))
 
 
@@ -30,33 +26,42 @@ def resize_pil_image(image):
     return image.resize((width, height))
 
 
-def get_data_from_pil_image(pil_image):
-    """Return a flattened, three-tuple of RGB values between 0 and 255."""
-    return pil_image.getdata()
-
-
 def hls(x):
-    """."""
+    """Transformation function.
+
+    1. Refactors each Red Green and Blue value in our flattened list of pixel
+    tuples to a number between 0 and 1.
+    2. Uses the colorsys library to convert RGB values into Hue, Lightness,
+    and Saturation.
+    """
     to_float = lambda x: x / 255.0
     (r, g, b) = map(to_float, x)
     h, l, s = colorsys.rgb_to_hls(r, g, b)
-    h = h if h > 0 else 1
     return h, l, s
 
 
 def refactor_and_sort_data(color_data):
-    """Input: a flattened list of an RGB three-tuple."""
+    """Covert RGB three-tuple and sort newly converted HLS data."""
     return sorted(color_data, key=hls)
 
 
 def main():
-    """Fill Docstring."""
+    """Optional main for seekhue.py.
+
+    1. Takes a jpg or png file as input and converts to PIL image.
+    2. Checks image dimensions and sets largest dimension to 1080px.
+    3. Returns RGB three-tuple of pixel color values.
+    4. Sorts and converts RGB three-tuple into HSL three-tuple.
+    5. Creates empty PIL image for sorted pixel data.
+    6. Puts sorted pixel data into empty PIL image object.
+    7. Saves Sorted image to disk.
+    """
     im = open_file_as_pil_image('test_imgs/rothko_5.png')
 
     if im.size[0] > 1080 or im.size[1] > 1080:
         im = resize_pil_image(im)
 
-    rgb_data = get_data_from_pil_image(im)
+    rgb_data = im.getdata()
     sorted_rgb_data = refactor_and_sort_data(rgb_data)
 
     sorted_im = create_empty_pil_image(im)
