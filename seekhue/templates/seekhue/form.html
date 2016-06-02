@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>Seek Hue - Color Quantizer</title>
     <link rel="stylesheet" type="text/css" href="{% static 'seekhue/style.css' %}">
   </head>
@@ -17,11 +17,25 @@
 
           <form action="{% url 'ack' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <label>Artist:</label>
+            <input type="text" name="artist">
+            <label>Title:</label>
+            <input type="text" name="title">
+            <label>Additional information</label>
+            <textarea type="text" placeholder="E.g. year, country of origin, artistic movement, medium, etc" name="data"></textarea>
+            <label></label>
             <input type="file" name="image-source">
             <input type="submit">
           </form>
 
       </section>
+
+      <footer>
+        <div>
+          <p id="copywrite">&copy;2016 Andrew Theis</p>
+          <a href="#top">Back to top &raquo;</a>
+        </div>
+      </footer>
 
       <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
       <script src="{% static 'seekhue/seekhue.js' %}"></script>

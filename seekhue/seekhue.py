@@ -17,12 +17,15 @@ def create_empty_pil_image(pil_image):
 
 def resize_pil_image(image):
     """Resize PIL image object, fixing largest dimension to 1080px."""
-    width, height = image.size[0], image.size[1]
+    width = image.size[0]
+    height = image.size[1]
     ratio = width / height
     if ratio >= 1:
-        width, height = 1080, int(width / ratio)
+        width = 1080
+        height = int(width / ratio)
     else:
-        height, width = 1080, int(height * ratio)
+        height = 1080
+        width = int(height * ratio)
     return image.resize((width, height))
 
 
@@ -37,6 +40,7 @@ def hls(x):
     to_float = lambda x: x / 255.0
     (r, g, b) = map(to_float, x)
     h, l, s = colorsys.rgb_to_hls(r, g, b)
+    h = h if 0 < h else 1
     return h, l, s
 
 
@@ -56,10 +60,15 @@ def main():
     6. Puts sorted pixel data into empty PIL image object.
     7. Saves Sorted image to disk.
     """
-    im = open_file_as_pil_image('test_imgs/rothko_5.png')
+    im = open_file_as_pil_image('test_imgs/munch_1.jpg')
 
-    if im.size[0] > 1080 or im.size[1] > 1080:
+    im.show()
+
+    width, height = im.size[0], im.size[1]
+
+    if width > 1080 or height > 1080:
         im = resize_pil_image(im)
+        im.show()
 
     rgb_data = im.getdata()
     sorted_rgb_data = refactor_and_sort_data(rgb_data)
@@ -67,7 +76,7 @@ def main():
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_rgb_data)
 
-    sorted_im.save('test_imgs/hls_sort_rothko_5.png')
+    sorted_im.save('test_imgs/hls_sort_munch_1.jpg')
 
 
 if __name__ == '__main__':

@@ -26,4 +26,7 @@ urlpatterns = [
     url(r'^$', views.render_index, name='index'),
     url(r'^form$', views.render_form, name='form'),
     url(r'^form/ack$', views.render_ack, name='ack'),
+    url(r'^painting/(?P<painting_id>.+)$',
+        views.render_painting, name='painting'),
+    url(r'^about$', views.render_about, name='about'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

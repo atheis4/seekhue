@@ -6,20 +6,22 @@ from django.shortcuts import render
 from . import logic
 
 
-def my_image(request):
-    """Test to send an HTTP Response object with an image."""
-    image_data = open('test_imgs/cezanne_1.jpg', 'rb')
-    return HttpResponse(image_data, content_type='image/jpg')
+def render_painting(request, painting_id):
+    """."""
+    painting = logic.return_painting_by_id(painting_id)
+    template_args = {
+        'painting': painting,
+    }
+    return render(request, 'seekhue/painting.html', template_args)
 
 
 def render_index(request):
     """Render index with previously transformed images in django template."""
-    image_list = logic.return_paintings_from_db()
+    painting_list = logic.return_paintings_from_db()
 
     template_args = {
-        'image_list': image_list,
+        'painting_list': painting_list,
     }
-
     return render(request, 'seekhue/index.html', template_args)
 
 
@@ -30,6 +32,9 @@ def render_form(request):
 
 def render_ack(request):
     """."""
+    artist = request.POST['artist']
+    title = request.POST['title']
+    data = request.POST['data']
     img_file = request.FILES['image-source']
 
     pil_image = logic.create_and_resize_pil_image(img_file)
@@ -39,10 +44,23 @@ def render_ack(request):
     sorted_django_file = logic.create_django_file(sorted_pil_image)
 
     django_file_tuple = logic.name_django_file_objects(
-        img_file,
+        title,
         original_django_file,
         sorted_django_file
     )
-    logic.create_painting_model(django_file_tuple)
 
-    return render(request, 'seekhue/ack.html', {})
+    painting = logic.create_painting_model(
+        django_file_tuple,
+        artist,
+        title,
+        data,
+    )
+    template_args = {
+        'painting': painting,
+    }
+    return render(request, 'seekhue/ack.html', template_args)
+
+
+def render_about(request):
+    """."""
+    return render(request, 'seekhue/about.html', {})
