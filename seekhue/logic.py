@@ -40,31 +40,36 @@ def create_django_file(pil_img):
     return django_file
 
 
-def name_django_file_objects(img_file, original_file_obj, sorted_file_obj):
+def name_django_file_objects(title, original_file_obj, sorted_file_obj):
     """Set name property for django file obejcts."""
-    image_name = img_file.name
+    file_name = title
 
-    original_file_obj.name = image_name
-    sorted_file_obj.name = 'sorted_' + image_name
+    original_file_obj.name = file_name
+    sorted_file_obj.name = 'sorted_' + file_name
 
     return (original_file_obj, sorted_file_obj)
 
 
-def create_painting_model(file_obj_tuple):
+def create_painting_model(file_obj_tuple, artist, title, data):
     """Take a tuple of django compatible files and create painting model."""
     original_file, sorted_file = file_obj_tuple[0], file_obj_tuple[1]
     new_painting = models.Painting(
         source=original_file,
         seekhue_sort=sorted_file,
+        artist=artist,
+        title=title,
+        data=data,
     )
     new_painting.save()
+    return new_painting
 
 
 def return_paintings_from_db():
     """."""
-    return models.Painting.objects.all()
+    return models.Painting.objects.all()[::-1]
 
 
-def return_painting_by_id(id):
+def return_painting_by_id(painting_id):
     """."""
-    return models.Painting.objects.get(id=id)
+    # print(painting_id)
+    return models.Painting.objects.get(id=painting_id)

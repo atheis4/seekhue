@@ -2,31 +2,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>Seek Hue - Color Quantizer</title>
     <link rel="stylesheet" type="text/css" href="{% static 'seekhue/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   </head>
   <div class="container">
     <body>
-      <header>
-        <h1>HEADLINE</h1>
-        <h2><a href="{% url 'form' %}">Submit an image</a></h2>
-      </header>
+      <div class="wrap">
 
-      <section>
+        <header class="main-header">
+          <h1><a href="{% url 'index' %}">seek hue</a></h1>
+          <nav>
+            <h2><a href="{% url 'form' %}">Submit</a></h2>
+            <h2><a href="{% url 'about' %}">About</a></h2>
+          </nav>
+        </header>
 
-      </section>
-
-      <section>
-        {% for image in image_list %}
-        <div class="img-container">
-          <a><img src="{{ image.source.url }}"></a>
+        <div>
+          {% block content %}
+          {% endblock %}
         </div>
-        <div class="img-container">
-          <a><img src="{{ image.seekhue_sort.url }}"></a>
+
+        <div id="painting-container">
+
+          {% for painting in painting_list %}
+          <section class="img-container">
+            <div class="img-tile">
+              <a href="{% url 'painting' painting.id %}"><img src="{{ painting.source.url }}"></a>
+              <p>"{{ painting.title }}"<br>{{ painting.artist }}</p>
+            </div>
+            <div class="img-tile">
+              <a><img src="{{ painting.seekhue_sort.url }}"></a>
+            </div>
+          </section>
+          {% endfor %}
+
         </div>
-        {% endfor %}
-      </section>
+
+      </div>
+
+      <footer>
+        <div>
+          <p id="copywrite">&copy;2016 Andrew Theis</p>
+          <a href="#top">Back to top &raquo;</a>
+        </div>
+      </footer>
 
       <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
       <script src="{% static 'seekhue/seekhue.js' %}"></script>

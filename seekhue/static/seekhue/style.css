@@ -1,22 +1,83 @@
-/*================
-SeekHue Stylesheet
-================*/
+/*=====================
+  Base Element Styles
+======================*/
 
-.container {
-  max-width: 90%;
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  font-size: 16px;
   margin: 0 auto;
 }
 
-section {
-  display: flex;
-  flex-direction: column;
+a {
+  text-decoration: none;
+  color: white;
 }
 
-.img-container {
-  flex: 1;
-  margin: 0 auto;
+p {
+
 }
 
 img {
-  max-width: 90%;
+  width: 100%;
+}
+
+
+/*====================
+  Base Layout Styles
+=====================*/
+
+/*---- Header ----*/
+
+.wrap {
+  min-height: calc(100vh - 180px);
+}
+
+header {
+  width: 100%;
+  background-color: rgba(30, 30, 30, .2);
+  text-align: center;
+}
+
+
+/*---- Navigation ----*/
+
+/*---- Image Tiles ----*/
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  background: rgba(200, 200, 200, .3);
+  margin: 20px 10px;
+}
+
+.img-tile {
+  flex: 1;
+  margin: 0 auto;
+  padding: 10px 10px;
+  margin: 10px;
+}
+
+/*---- Footer ----*/
+
+/*-----------------
+Media Queries
+-----------------*/
+
+@media (min-width: 768px) {
+  .wrap {
+    min-height: calc(100vh - 180px);
+  }
+
+  .img-container {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrap {
+    min-height: calc(100vh - 180px);
+  }
 }
