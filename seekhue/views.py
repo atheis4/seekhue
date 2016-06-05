@@ -27,7 +27,12 @@ def render_index(request):
 
 def render_form(request):
     """Docstring."""
-    return render(request, 'seekhue/form.html', {})
+    painting_list = logic.return_paintings_from_db()
+
+    template_args = {
+        'painting_list': painting_list,
+    }
+    return render(request, 'seekhue/form.html', template_args)
 
 
 def render_ack(request):

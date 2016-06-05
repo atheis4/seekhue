@@ -66,7 +66,7 @@ def create_painting_model(file_obj_tuple, artist, title, data):
 
 def return_paintings_from_db():
     """."""
-    return models.Painting.objects.all()[::-1]
+    return models.Painting.objects.all().order_by('-timestamp')[:9]
 
 
 def return_painting_by_id(painting_id):
