@@ -6,31 +6,86 @@
     <title>Seek Hue - Color Quantizer</title>
     <link rel="stylesheet" type="text/css" href="{% static 'seekhue/style.css' %}">
   </head>
+
   <div class="container">
     <body>
-      <header>
-        <h1>Submitted!</h1>
-        <h2><a href="{% url 'index' %}">Back to index</a></h2>
-      </header>
+      <div class="wrap">
+        <div id="form-div">
 
-      <section class="img-container">
-        <div class="img-tile">
-          <img src="{{ painting.source.url }}">
-        </div>
-        <div class="img-tile">
-          <img src="{{ painting.seekhue_sort.url }}">
-        </div>
-      </section>
+          <form action="{% url 'ack' %}" method="post" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            <section class="form-text">
+              <div class="form-left">
+                <p><a id="form-exit" href="#form" class="form-link">x</a></p>
+                <h2>Submission Guidelines</h2>
+                <p>Enter painting's artist and title when you submit.</p>
+                <p>Under <b>additional information</b>, include items like year completed, medium, artist's country of origin, and artistic style or movement of the painting.</p>
+                <p>While not manditory, these guidelines will keep our database ordered and allow users to accurately search the collection.</p>
+                <p>For more information on this project and these guidelines, click <a href="{% url 'about' %}" class="form-link"><b>here</b></a>.</p>
+              </div>
 
-      <footer>
-        <div>
-          <p id="copywrite">&copy;2016 Andrew Theis</p>
-          <a href="#top">Back to top &raquo;</a>
+              <div class="form-right">
+                <div class="form-field">
+                  <label class="form-label">Artist:</label>
+                  <input type="text" name="artist" placeholder="e.g. Salivdor Dali or Dali" class="form-input">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Title:</label>
+                  <input type="text" name="title" placeholder="specificity please" class="form-input">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Additional Information:</label>
+                  <textarea type="text" placeholder="e.g. year as YYYY, country, art movement" name="data" class="form-input"></textarea>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Image File:</label>
+                  <input type="file" id="file-button" name="image-source" class="form-input">
+                </div>
+              </div>
+            </section>
+
+            <div class="submit-btn-div">
+              <input type="submit" id="submit-button">
+            </div>
+
+          </form>
         </div>
-      </footer>
+
+        <header>
+          <a href="{% url 'index' %}"><h1>seek hue</h1></a>
+          <nav>
+            <a href="#form" id="show-form"><h2>submit</h2></a>
+            <a href="{% url 'about' %}"><h2>about</h2></a>
+          </nav>
+        </header>
+
+
+        <section>
+          <h2 id="submit-msg"><a href="{% url 'index' %}">submit successful!</a></h2>
+        </section>
+
+        <div id="painting-container">
+          <section class="img-container indv-img">
+            <div class="img-tile">
+              <img src="{{ painting.source.url }}" alt="Original Image">
+              <p><i>{{ painting.title }}</i><br>{{ painting.artist }}</p>
+            </div>
+            <div class="img-tile">
+              <img src="{{ painting.seekhue_sort.url }}" alt="Seekhue sort">
+            </div>
+          </section>
+        </div>
+
+        <footer>
+          <div>
+            <p id="copywrite">&copy;2016 Andrew Theis</p>
+            <a href="#top">Back to top &raquo;</a>
+          </div>
+        </footer>
 
       <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
       <script src="{% static 'seekhue/seekhue.js' %}"></script>
+    </div>
     </body>
   </div>
 </html>

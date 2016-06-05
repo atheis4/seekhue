@@ -71,10 +71,10 @@ def main():
         im.show()
 
     rgb_data = im.getdata()
-    sorted_rgb_data = refactor_and_sort_data(rgb_data)
+    sorted_hls_data = refactor_and_sort_data(rgb_data)
 
     sorted_im = create_empty_pil_image(im)
-    sorted_im.putdata(sorted_rgb_data)
+    sorted_im.putdata(sorted_hls_data)
 
     sorted_im.save('test_imgs/hls_sort_munch_1.jpg')
 
