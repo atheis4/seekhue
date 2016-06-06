@@ -112,6 +112,10 @@ nav h2 {
   margin: -10px 0 10px 0;
 }
 
+.form-right {
+  margin-top: 10px;
+}
+
 #submit-button {
   font-size: 1em;
   width: 95%;
@@ -128,7 +132,7 @@ nav h2 {
   display: flex;
   flex-direction: column;
   background: rgba(200, 200, 200, .3);
-  box-shadow: 0px 0px 5px 5px rgba(30, 30, 30, .2);
+  box-shadow: 0px 5px 5px 5px rgba(30, 30, 30, .2);
   margin: 20px 10px;
 }
 
@@ -220,8 +224,8 @@ footer {
   #form-div {
     height: 600px;
     font-size: 1.125em;
-    width: 70%;
-    margin-left: 10%;
+    width: 80%;
+    margin-left: 5%;
   }
 
   .form-text {
@@ -231,24 +235,30 @@ footer {
 
   .form-left {
     width: 100%;
-    margin: 0 auto;
   }
 
   .form-left h2 {
     margin-bottom: 25px;
+    margin-top: -25px;
   }
 
   .form-right {
-    width: 50%;
-    margin: -5px auto;
+    width: 80%;
+    margin: 0 auto;
   }
 
   .form-field {
     margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-label {
+    flex: 1
   }
 
   .form-input {
-    width: 98%;
+    flex: 2;
     font-size: .75em;
   }
 
@@ -294,7 +304,7 @@ footer {
   #form-div {
     height: 500px;
     width: 70%;
-    margin: 5% 10%;
+    margin: 3% 10%;
   }
 
   .form-text {
@@ -310,7 +320,7 @@ footer {
 
   .form-left h2 {
     font-size: 2em;
-    margin-bottom: 30px;
+    margin: 0 0 30px 0;
     text-align: left;
   }
 
@@ -335,6 +345,7 @@ footer {
 
   .form-field {
     margin-bottom: 15px;
+    display: block;
   }
 
   #submit-button {
