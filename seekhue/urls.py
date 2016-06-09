@@ -24,9 +24,10 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.render_index, name='index'),
-    url(r'^form$', views.render_form, name='form'),
     url(r'^form/ack$', views.render_ack, name='ack'),
     url(r'^painting/(?P<painting_id>.+)$',
         views.render_painting, name='painting'),
     url(r'^about$', views.render_about, name='about'),
+    url(r'^search$', views.render_search, name='search'),
+    url(r'^rand_img$', views.render_random_img, name='random')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

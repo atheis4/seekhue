@@ -16,10 +16,14 @@ class Painting(models.Model):
         max_length=80,
         default='',
     )
+    year = models.CharField(
+        max_length=4,
+        default='',
+    )
     data = models.TextField(
         default='',
     )
-    timestamp = models.DateField(
+    timestamp = models.DateTimeField(
         auto_now_add=True,
     )
 
@@ -37,5 +41,6 @@ class Painting(models.Model):
             self.seekhue_sort,
             self.artist,
             self.title,
+            self.year,
             self.data,
         )

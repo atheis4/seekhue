@@ -9,6 +9,7 @@ html {
 body {
   font-size: 16px;
   margin: 0 auto;
+  background-color: rgba(200, 200, 200, .1);
 }
 
 a {
@@ -37,10 +38,9 @@ img {
 
 header {
   width: 100%;
-  background-color: rgba(30, 30, 30, .3);
   text-align: center;
   padding: 5px 0 20px 0;
-  border-bottom: 10px solid rgba(30, 30, 30, .25)
+  border-bottom: solid 5px rgba(30, 30, 30, .25);
 }
 
 h1 {
@@ -51,10 +51,30 @@ nav h2 {
   width: 40%;
   margin: 10px auto;
   padding: 10px 20px;
-  background-color: rgba(255, 255, 255, .25);
+  background-color: rgba(0, 0, 0, .5);
 }
 
-/*---- Navigation ----*/
+/*---- Search Styling ----*/
+
+.search-form {
+  display: flex;
+  border-bottom: 5px solid rgba(30, 30, 30, .25);
+}
+
+.search-input {
+  font-size: 1em;
+  flex: 5;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.search-button {
+  font-size: 1em;
+  flex: 2;
+  padding: 15px 0;
+  background-color: white;
+}
+
 
 /*---- Form Styling ----*/
 
@@ -131,9 +151,9 @@ nav h2 {
 .img-container {
   display: flex;
   flex-direction: column;
-  background: rgba(200, 200, 200, .3);
-  box-shadow: 0px 5px 5px 5px rgba(30, 30, 30, .2);
+  box-shadow: 0px 2px 5px 2px rgba(30, 30, 30, .2);
   margin: 20px 10px;
+  background-color: white;
 }
 
 .img-tile {
@@ -159,11 +179,33 @@ nav h2 {
 footer {
   color: white;
   text-align: center;
-  padding-bottom: 30px;
-  background-color: rgba(30, 30, 30, .3);
   border-top: 10px solid rgba(30, 30, 30, .25);
 }
 
+footer div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, .3)
+}
+
+#copywrite {
+  margin: 0 auto;
+}
+
+
+/*---- About Page Styles ----*/
+
+.about-text {
+  background-color: white;
+  margin: 10px 10px;
+  padding: 5px 10px;
+  box-shadow: 0px 2px 5px 2px rgba(30,30,30,.3);
+}
+
+.about-text h2, p {
+  padding: 0 10px;
+}
 
 /*=====================
   Media Query - 768px
@@ -203,16 +245,38 @@ footer {
   nav h2 {
     font-size: 1.25em;
     width: 100%;
-    padding: 10px 20px;
     margin-top: 20px;
   }
+
 
 /*---- Image Styling ----*/
 
   .img-container {
-    width: 60%;
+    width: 80%;
     margin: 20px auto;
     flex-direction: row;
+  }
+
+
+/*---- Search Styling ----*/
+
+  .search-form {
+    display: flex;
+    border-bottom: 5px solid rgba(30, 30, 30, .25);
+  }
+
+  .search-input {
+    font-size: 1.125em;
+    flex: 7;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .search-button {
+    font-size: 1.125em;
+    flex: 2;
+    padding: 15px 0;
+    background-color: white;
   }
 
 /*---- Form Styling ----*/
@@ -274,6 +338,20 @@ footer {
   #submit-button {
     padding: 10px 0;
   }
+
+
+/*---- About Page Styles ----*/
+
+  .about-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-text {
+    width: 40%;
+    margin: 10px 10px;
+  }
 }
 
 
@@ -330,7 +408,7 @@ footer {
 
   .form-right {
       flex: .425;
-      padding-top: 75px;
+      padding-top: 20px;
       margin: 0;
   }
 
@@ -370,11 +448,12 @@ footer {
   }
 
   .img-container {
-    max-width: 27%;
-    margin: 20px 20px;
+    max-width: 29%;
+    margin: 20px 15px;
   }
 
   .indv-img {
-    max-width: 60%
+    max-width: 80%
   }
+
 }

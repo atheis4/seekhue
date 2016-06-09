@@ -76,7 +76,7 @@ def main():
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_hls_data)
 
-    sorted_im.save('test_imgs/hls_sort_munch_1.jpg')
+    sorted_im.save('test_imgs/hls_sort_munch_1.png')
 
 
 if __name__ == '__main__':

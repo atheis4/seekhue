@@ -39,6 +39,7 @@ def render_ack(request):
     """."""
     artist = request.POST['artist']
     title = request.POST['title']
+    year = request.POST['year']
     data = request.POST['data']
     img_file = request.FILES['image-source']
 
@@ -58,6 +59,7 @@ def render_ack(request):
         django_file_tuple,
         artist,
         title,
+        year,
         data,
     )
     template_args = {
@@ -69,3 +71,23 @@ def render_ack(request):
 def render_about(request):
     """."""
     return render(request, 'seekhue/about.html', {})
+
+
+def render_search(request):
+    """."""
+    search_term = request.GET['search']
+
+    painting_list = logic.return_painting_by_search(search_term)
+
+    template_args = {
+        'painting_list': painting_list,
+    }
+    return render(request, 'seekhue/search.html', template_args)
+
+
+def render_random_img(request):
+    """."""
+    response = HttpResponse(content_type='image/jpg')
+    pil_image = logic.return_random_pil_image()
+    pil_image.save(response, 'png')
+    return response

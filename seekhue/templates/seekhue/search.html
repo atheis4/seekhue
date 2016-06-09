@@ -53,7 +53,6 @@
           </form>
         </div>
 
-
         <header>
           <style>
           header {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
@@ -74,34 +73,16 @@
           </div>
         </section>
 
-        <div class="about-div">
-          <section class="about-text">
-            <h2>The Tyranny of Color</h2>
-            <p>Color is the most ubiquitous as well as least understood visual phenomenon in nature.</p>
-            <p>Color is absolutely relative--what color you perceive depends on specific light conditions as well surrounding colors and the perceptual capablities of the viewer.</p>
-            <p>Color can envoke royalty and social status, pride in one's country, the devine, or contamination and disease.</p>
+        <div id="painting-container">
+          {% for painting in painting_list %}
+          <section class="img-container">
+            <div class="img-tile">
+              <a href="{% url 'painting' painting.id %}"><img src="{{ painting.source.url }}" data-orig-src="{{ painting.source.url }}" data-sort-src="{{ painting.seekhue_sort.url }}"></a>
+              <p><i>{{ painting.title }}</i>  ({{ painting.year }})<br>{{ painting.artist }}</p>
+            </div>
           </section>
-
-          <section class="about-text">
-            <h2>Color and Art</h2>
-            <p>As technology advanced, new pigments became available for the artist. The greatest advancement in art history is arguably the creation of oil paint.</p>
-            <p>Any student of art or art enthusiast recognizes the uniqueness of oil paint: its luminosity, its vibrance, and its staying power.</p>
-          </section>
-
-          <section class="about-text">
-            <h2>My Relationship to Color</h2>
-            <p>As an art student, I was terrified of color.</p>
-            <p>Its extreme relativity has, since my first forays into acrylic and oil painting, challenged me and left me unhappy with almost every artistic color choice I have made.</p>
-            <p>I designed this project to try and lift the viel and gain a new perspective on the palette's of the great wealth of paintings in art history.</p>
-          </section>
-
-          <section class="about-text">
-            <h2>Why Paintings?</h2>
-            <p>Paintings offer a strict environment in which no coordinate is extraneous--artists have full control over the two dimensional surface and each and every mark that appears there.</p>
-            <p>Paintings also offer a huge pre-existing database of images and palettes for my algorithm to explore and analyze.</p>
-          </section>
+          {% endfor %}
         </div>
-
 
       </div>
 

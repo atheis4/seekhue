@@ -19,10 +19,9 @@
               <div class="form-left">
                 <p><a id="form-exit" href="#form" class="form-link">x</a></p>
                 <h2>Submission Guidelines</h2>
-                <p>Enter painting's artist and title when you submit.</p>
-                <p>Under <b>additional information</b>, include items like year completed, medium, artist's country of origin, and artistic style or movement of the painting.</p>
-                <p>While not manditory, these guidelines will keep our database ordered and allow users to accurately search the collection.</p>
-                <p>For more information on this project and these guidelines, click <a href="{% url 'about' %}" class="form-link"><b>here</b></a>.</p>
+                <p>1. Have we already transformed that image? Check our database!</p>
+                <p>2. Image Quality - Think about the quality of the painting you're uploading. Avoid images with borders (noise) and select a version with the most accurate color quality.</p>
+                <p>3. GOOGLE! - Even if it is your favorite painting, by your favorite artist, that you wrote a ten page paper on in school, google it. Our database loves accuracy.</p>
               </div>
 
               <div class="form-right">
@@ -35,8 +34,12 @@
                   <input type="text" name="title" placeholder="specificity please" class="form-input">
                 </div>
                 <div class="form-field">
+                  <label class="form-label">Year:</label>
+                  <input type="text" name="year" placeholder="YYYY" class="form-input">
+                </div>
+                <div class="form-field">
                   <label class="form-label">Additional Information:</label>
-                  <textarea type="text" placeholder="e.g. year as YYYY, country, art movement" name="data" class="form-input"></textarea>
+                  <textarea type="text" placeholder="e.g. country of origin, art movement" name="data" class="form-input"></textarea>
                 </div>
                 <div class="form-field">
                   <label class="form-label">Image File:</label>
@@ -51,23 +54,32 @@
         </div>
 
         <header>
-          <a href="{% url 'index' %}"><h1>seek hue</h1></a>
+          <style>
+          header {background-image: url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
+          </style>
+          <a href="{% url 'index' %}" class="logo"><h1>seek hue</h1></a>
           <nav>
-            <a href="#form" id="show-form"><h2>submit</h2></a>
-            <a href="{% url 'about' %}"><h2>about</h2></a>
+            <a href="#form" id="show-form"><h2 class="nav-link">submit</h2></a>
+            <a href="{% url 'about' %}"><h2 class="nav-link">about</h2></a>
           </nav>
         </header>
+
+        <section>
+          <div>
+            <form action="{% url 'search' %}" method="get" class="search-form">
+              <input type="text" name="search" class="search-input" placeholder="artist, art movement, country">
+              <button type="submit" class="search-button">search</button>
+            </form>
+          </div>
+        </section>
 
         <div id="painting-container">
           {% for painting in painting_list %}
           <section class="img-container">
             <div class="img-tile">
-              <a href="{% url 'painting' painting.id %}"><img src="{{ painting.source.url }}" data-sort-src="{{ painting.seekhue_sort.url }}"></a>
-              <p><i>{{ painting.title }}</i><br>{{ painting.artist }}</p>
+              <a href="{% url 'painting' painting.id %}"><img src="{{ painting.source.url }}" data-orig-src="{{ painting.source.url }}" data-sort-src="{{ painting.seekhue_sort.url }}"></a>
+              <p><i>{{ painting.title }}</i>  ({{ painting.year }})<br>{{ painting.artist }}</p>
             </div>
-            <!-- <div class="img-tile">
-              <a><img src="{{ painting.seekhue_sort.url }}"></a>
-            </div> -->
           </section>
           {% endfor %}
         </div>
@@ -75,6 +87,9 @@
       </div>
 
       <footer>
+        <style>
+        footer {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
+        </style>
         <div>
           <p id="copywrite">&copy;2016 Andrew Theis</p>
           <a href="#top">Back to top &raquo;</a>

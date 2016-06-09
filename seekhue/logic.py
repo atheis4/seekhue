@@ -1,10 +1,13 @@
 """Logic.py."""
 
 import io
+import random
 
 from django.core.files import File
+from django.db.models import Q
 
 from . import models
+from . import random_banner
 from . import seekhue
 
 
@@ -35,7 +38,7 @@ def create_sorted_pil_image(pil_image):
 def create_django_file(pil_img):
     """Create a django compatable file object of a pil image."""
     django_file = File(io.BytesIO())
-    pil_img.save(django_file, format='jpeg')
+    pil_img.save(django_file, format='png')
 
     return django_file
 
@@ -50,7 +53,7 @@ def name_django_file_objects(title, original_file_obj, sorted_file_obj):
     return (original_file_obj, sorted_file_obj)
 
 
-def create_painting_model(file_obj_tuple, artist, title, data):
+def create_painting_model(file_obj_tuple, artist, title, year, data):
     """Take a tuple of django compatible files and create painting model."""
     original_file, sorted_file = file_obj_tuple[0], file_obj_tuple[1]
     new_painting = models.Painting(
@@ -58,6 +61,7 @@ def create_painting_model(file_obj_tuple, artist, title, data):
         seekhue_sort=sorted_file,
         artist=artist,
         title=title,
+        year=year,
         data=data,
     )
     new_painting.save()
@@ -66,10 +70,33 @@ def create_painting_model(file_obj_tuple, artist, title, data):
 
 def return_paintings_from_db():
     """."""
-    return models.Painting.objects.all().order_by('-timestamp')[:9]
+    paintings = models.Painting.objects.all()
+
+    index_list = []
+
+    while len(index_list) < 9:
+        chosen_painting = random.choice(paintings)
+        if chosen_painting not in index_list:
+            index_list.append(chosen_painting)
+
+    return index_list
 
 
 def return_painting_by_id(painting_id):
     """."""
-    # print(painting_id)
     return models.Painting.objects.get(id=painting_id)
+
+
+def return_painting_by_search(search_term):
+    """."""
+    return models.Painting.objects.filter(
+        Q(artist__icontains=search_term) |
+        Q(title__icontains=search_term) |
+        Q(year__icontains=search_term) |
+        Q(data__icontains=search_term),
+    )
+
+
+def return_random_pil_image():
+    """."""
+    return random_banner.main()
