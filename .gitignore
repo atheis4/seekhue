@@ -1,5 +1,11 @@
 venv
 __pycache__
-test_imgs
+
 db.sqlite3
 .DS_Store
+
+test_imgs
+media
+static
+
+.env
