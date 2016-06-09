@@ -72,12 +72,10 @@ def return_paintings_from_db():
     """."""
     paintings = models.Painting.objects.all()
 
-    index_list = []
-
-    while len(index_list) < 9:
-        chosen_painting = random.choice(paintings)
-        if chosen_painting not in index_list:
-            index_list.append(chosen_painting)
+    if len(paintings) < 9:
+        index_list = paintings
+    else:
+        index_list = random.sample(paintings, 9)
 
     return index_list
 
