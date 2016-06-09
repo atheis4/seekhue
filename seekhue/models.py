@@ -1,13 +1,21 @@
 """Models for Seek Hue: Color Quantizer web app."""
 
+import uuid
+
 from django.db import models
+
+
+def unique_file_name(_, filename):
+    """."""
+    random_prefix = str(uuid.uuid4()) + '_'
+    return random_prefix + filename
 
 
 class Painting(models.Model):
     """docstring for Painting model."""
 
-    source = models.ImageField()
-    seekhue_sort = models.ImageField()
+    source = models.ImageField(upload_to=unique_file_name)
+    seekhue_sort = models.ImageField(upload_to=unique_file_name)
     artist = models.CharField(
         max_length=80,
         default='',
