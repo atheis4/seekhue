@@ -6,9 +6,9 @@ SeekHue takes an image file, creates a three-tuple of the image pixel color valu
 
 After cloning this repository and setting up your virtual environment, you'll need to complete three more steps to run SeekHue:
 
-  *1* Install dependencies Pillow and Django.
-  *2* Run makemigrations to initialize model classes in Django database.
-  *3* Create a folder called media/ in app root directory--source images and transformations will be stored here.
+  1. Install dependencies Pillow and Django.
+  2. Run makemigrations to initialize model classes in Django database.
+  3. Create a folder called media/ in app root directory--source images and transformations will be stored here.
 
 # Usage
 
