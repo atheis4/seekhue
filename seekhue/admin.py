@@ -1,4 +1,4 @@
-"""Docstring for admin.py."""
+"""Admin.py."""
 
 from django.contrib import admin
 

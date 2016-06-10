@@ -69,7 +69,7 @@ def create_painting_model(file_obj_tuple, artist, title, year, data):
 
 
 def return_paintings_from_db():
-    """."""
+    """Create list of all paintings, select a random sample of 9 to display."""
     paintings = models.Painting.objects.all()
 
     if len(paintings) < 9:
@@ -81,12 +81,12 @@ def return_paintings_from_db():
 
 
 def return_painting_by_id(painting_id):
-    """."""
+    """Return a specific painting by id."""
     return models.Painting.objects.get(id=painting_id)
 
 
 def return_painting_by_search(search_term):
-    """."""
+    """Query painting database fields for search term."""
     return models.Painting.objects.filter(
         Q(artist__icontains=search_term) |
         Q(title__icontains=search_term) |
@@ -96,5 +96,5 @@ def return_painting_by_search(search_term):
 
 
 def return_random_pil_image():
-    """."""
+    """Run the banner randomizer to get random header/footer image for site."""
     return random_banner.main()

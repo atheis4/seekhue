@@ -1,4 +1,4 @@
-"""Seekhue.py:."""
+"""Take an image and return a copy with all pixel values sorted by hue."""
 
 import colorsys
 
