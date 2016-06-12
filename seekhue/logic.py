@@ -75,7 +75,7 @@ def return_paintings_from_db():
     if len(paintings) < 9:
         index_list = paintings
     else:
-        index_list = random.sample(paintings, 9)
+        index_list = random.sample(list(paintings), 9)
 
     return index_list
 
