@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <title>Seek Hue - Color Quantizer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <div class="container">
+    <body>
+      <div class="wrap">
+
+        <div id="form-div">
+
+          <form method="post" enctype="multipart/form-data" id="form">
+            <section class="form-text">
+              <div class="form-left">
+                <p><a id="form-exit" href="#form" class="form-link">x</a></p>
+                <h2>**DEMO**Submission Guidelines**DEMO**</h2>
+                <p>1. Have we already transformed that image? Check our database!</p>
+                <p>2. Image Quality - Think about the quality of the painting you're uploading. Avoid images with borders (noise) and select a version with the most accurate color quality.</p>
+                <p>3. GOOGLE! - Even if it is your favorite painting, by your favorite artist, that you wrote a ten page paper on in school, google it. Our database loves accuracy.</p>
+              </div>
+
+              <div class="form-right">
+                <div class="form-field">
+                  <label class="form-label">Artist:</label>
+                  <input type="text" name="artist" placeholder="e.g. Salivdor Dali or Dali" class="form-input">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Title:</label>
+                  <input type="text" name="title" placeholder="specificity please" class="form-input">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Year:</label>
+                  <input type="text" name="year" placeholder="YYYY" class="form-input">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Additional Information:</label>
+                  <textarea type="text" placeholder="e.g. country of origin, art movement" name="data" class="form-input"></textarea>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Image File:</label>
+                  <input type="file" id="file-button" name="image-source" class="form-input">
+                </div>
+              </div>
+            </section>
+            <div class="submit-btn-div">
+              <input type="submit" id="submit-button">
+            </div>
+          </form>
+        </div>
+
+        <header>
+          <style>
+          header {background-image: url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
+          </style>
+          <a href="index.html" class="logo"><h1>seek hue</h1></a>
+          <nav>
+            <a href="#form" id="show-form"><h2 class="nav-link">submit</h2></a>
+            <a href="about.html"><h2 class="nav-link">about</h2></a>
+          </nav>
+        </header>
+
+        <section>
+          <div>
+            <form class="search-form">
+              <input type="text" name="search" class="search-input" placeholder="artist, art movement, country">
+              <button class="search-button">search</button>
+            </form>
+          </div>
+        </section>
+
+        <div id="painting-container">
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+          <section class="img-container">
+            <div class="img-tile">
+              <a href=""><img src="" data-orig-src="" data-sort-src=""></a>
+              <p><i></i><br></p>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <footer>
+        <style>
+        footer {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
+        </style>
+        <div>
+          <p id="copywrite">&copy;2016 Andrew Theis</p>
+          <a href="#top">Back to top &raquo;</a>
+        </div>
+      </footer>
+
+      <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+      <script src="seekhue.js"></script>
+    </body>
+  </div>
+</html>

@@ -1,0 +1,459 @@
+/*=====================
+  Base Element Styles
+======================*/
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  font-size: 16px;
+  margin: 0 auto;
+  background-color: rgba(200, 200, 200, .1);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+img {
+  width: 100%;
+}
+
+
+/*====================
+  Base Layout Styles
+=====================*/
+
+.wrap {
+  min-height: calc(100vh - 108px);
+}
+
+/*---- Header ----*/
+
+header {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0 20px 0;
+  border-bottom: solid 5px rgba(30, 30, 30, .25);
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+nav h2 {
+  width: 40%;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+/*---- Search Styling ----*/
+
+.search-form {
+  display: flex;
+  border-bottom: 5px solid rgba(30, 30, 30, .25);
+}
+
+.search-input {
+  font-size: 1em;
+  flex: 5;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.search-button {
+  font-size: 1em;
+  flex: 2;
+  padding: 15px 0;
+  background-color: white;
+}
+
+
+/*---- Form Styling ----*/
+
+#form-div {
+  position: fixed;
+  border: solid 1px rgba(30, 30, 30, .3);
+  height: 90%;
+  width: 80%;
+  margin: 5% 5%;
+  padding: 5% 5%;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0px 0px 5px 1000px rgba(30, 30, 30, .5);
+  display: none;
+}
+
+#form label, input, textarea {
+  display: block;
+}
+
+#form {
+  margin-top: 5px;
+  margin-left: 5%;
+}
+
+#submit-button {
+  font-size: 1.5em;
+  width: 95%;
+  margin-top: 10px;
+}
+
+#form-exit {
+  position: absolute;
+  right: 4%;
+  top: 1%;
+  font-size: 1.75em;
+}
+
+.form-link {
+  color: black;
+}
+
+.form-input {
+  margin: 5px 0;
+  width: 96.5%;
+}
+
+.form-left {
+  font-size: .9em;
+  padding-right: 5%;
+}
+
+.form-left h2 {
+  text-align: center;
+  margin: -10px 0 10px 0;
+}
+
+.form-right {
+  margin-top: 10px;
+}
+
+#submit-button {
+  font-size: 1em;
+  width: 95%;
+  margin-top: 20px;
+  padding: 15px 0;
+  border: 1px solid rgba(30, 30, 30, .3);
+  background-color: white;
+}
+
+
+/*---- Image Styling ----*/
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 5px 2px rgba(30, 30, 30, .2);
+  margin: 20px 10px;
+  background-color: white;
+}
+
+.img-tile {
+  flex: 1;
+  margin: 0 auto;
+  padding: 10px 10px;
+  margin: 10px;
+}
+
+/*---- Ack Page Styles ----*/
+
+#submit-msg {
+  text-align: center;
+  color: white;
+  background-color: lightgreen;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+
+
+/*---- Footer ----*/
+
+footer {
+  color: white;
+  text-align: center;
+  border-top: 10px solid rgba(30, 30, 30, .25);
+}
+
+footer div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, .3)
+}
+
+#copywrite {
+  margin: 0 auto;
+}
+
+
+/*---- About Page Styles ----*/
+
+.about-text {
+  background-color: white;
+  margin: 10px 10px;
+  padding: 5px 10px;
+  box-shadow: 0px 2px 5px 2px rgba(30,30,30,.3);
+}
+
+.about-text h2, p {
+  padding: 0 10px;
+}
+
+/*=====================
+  Media Query - 768px
+======================*/
+
+@media (min-width: 768px) {
+  .wrap {
+    min-height: calc(100vh - 108px);
+  }
+
+/*---- Base Element Styling ----*/
+
+  p {
+    font-size: 1.125em;
+  }
+
+/*---- Header Styling ----*/
+
+  header {
+    display: inline-block;
+  }
+
+  header h1 {
+    float: left;
+    width: 50%;
+    text-align: left;
+    padding: 1% 0 0 7.5%;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2.5%;
+    margin: 0 50px;
+  }
+
+  nav h2 {
+    font-size: 1.25em;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+
+/*---- Image Styling ----*/
+
+  .img-container {
+    width: 80%;
+    margin: 20px auto;
+    flex-direction: row;
+  }
+
+
+/*---- Search Styling ----*/
+
+  .search-form {
+    display: flex;
+    border-bottom: 5px solid rgba(30, 30, 30, .25);
+  }
+
+  .search-input {
+    font-size: 1.125em;
+    flex: 7;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .search-button {
+    font-size: 1.125em;
+    flex: 2;
+    padding: 15px 0;
+    background-color: white;
+  }
+
+/*---- Form Styling ----*/
+
+  #form {
+    margin-left: 5%;
+  }
+
+  #form-div {
+    height: 600px;
+    font-size: 1.125em;
+    width: 80%;
+    margin-left: 5%;
+  }
+
+  .form-text {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .form-left {
+    width: 100%;
+  }
+
+  .form-left h2 {
+    margin-bottom: 25px;
+    margin-top: -25px;
+  }
+
+  .form-right {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-field {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-label {
+    flex: 1
+  }
+
+  .form-input {
+    flex: 2;
+    font-size: .75em;
+  }
+
+  .submit-btn-div {
+    width: 70%;
+    margin: 30px auto;
+  }
+
+  #form-exit {
+    right: 1.75%;
+  }
+
+  #submit-button {
+    padding: 10px 0;
+  }
+
+
+/*---- About Page Styles ----*/
+
+  .about-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-text {
+    width: 40%;
+    margin: 10px 10px;
+  }
+}
+
+
+/*=====================
+  Media Query - 1024px
+======================*/
+
+@media (min-width: 1024px) {
+  .wrap {
+    min-height: calc(100vh - 100px);
+  }
+
+
+/*---- Header Styling ----*/
+
+  header {
+    display: inline-block;
+  }
+
+  nav h2 {
+    padding: 15px 30px;
+    margin-top: 10px;
+  }
+
+
+/*---- Form Styling ----*/
+
+  #form-div {
+    height: 500px;
+    width: 70%;
+    margin: 3% 10%;
+  }
+
+  .form-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .form-left {
+    flex: .575;
+    margin-left: -35px;
+  }
+
+  .form-left h2 {
+    font-size: 2em;
+    margin: 0 0 30px 0;
+    text-align: left;
+  }
+
+  .form-left p {
+    font-size: 1.125em;
+  }
+
+  .form-right {
+      flex: .425;
+      padding-top: 20px;
+      margin: 0;
+  }
+
+  .form-label {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  .form-input {
+    font-size: 1em;
+  }
+
+  .form-field {
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  #submit-button {
+    font-size: 1em;
+    width: 100%;
+    margin: 5px 0 0 -20px;
+    padding: 20px 0;
+    border: 1px solid rgba(30, 30, 30, .3);
+    background-color: white;
+  }
+
+  #form-exit {
+    right: 1.75%;
+  }
+
+/*---- Image Styling ----*/
+
+  #painting-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .img-container {
+    max-width: 29%;
+    margin: 20px 15px;
+  }
+
+  .indv-img {
+    max-width: 80%
+  }
+
+}
