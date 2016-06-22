@@ -34,6 +34,7 @@ img {
   min-height: calc(100vh - 108px);
 }
 
+
 /*---- Header ----*/
 
 header {
@@ -56,6 +57,7 @@ nav h2 {
   padding: 10px 20px;
   background-color: rgba(0, 0, 0, .5);
 }
+
 
 /*---- Search Styling ----*/
 
@@ -166,6 +168,7 @@ nav h2 {
   margin: 10px;
 }
 
+
 /*---- Ack Page Styles ----*/
 
 #submit-msg {
@@ -213,6 +216,7 @@ footer div {
   padding: 0 10px;
 }
 
+
 /*=====================
   Media Query - 768px
 ======================*/
@@ -222,11 +226,13 @@ footer div {
     min-height: calc(100vh - 108px);
   }
 
+
 /*---- Base Element Styling ----*/
 
   p {
     font-size: 1.125em;
   }
+
 
 /*---- Header Styling ----*/
 
@@ -413,9 +419,9 @@ footer div {
   }
 
   .form-right {
-      flex: .425;
-      padding-top: 20px;
-      margin: 0;
+    flex: .425;
+    padding-top: 20px;
+    margin: 0;
   }
 
   .form-label {
@@ -444,6 +450,7 @@ footer div {
   #form-exit {
     right: 1.75%;
   }
+
 
 /*---- Image Styling ----*/
 
