@@ -52,20 +52,17 @@
         </div>
 
         <header>
-          <style>
-          header {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
-          </style>
-          <a href="{% url 'index' %}"><h1>seek hue</h1></a>
+          <a href="index.html"><h1>seek hue</h1></a>
           <nav>
             <a href="#form" id="show-form"><h2 class="nav-link">submit</h2></a>
-            <a href="{% url 'about' %}"><h2 class="nav-link">about</h2></a>
+            <a href="about.html"><h2 class="nav-link">about</h2></a>
           </nav>
         </header>
 
         <section>
           <div>
-            <form action="{% url 'search' %}" method="get" class="search-form">
-              <input type="text" name="search" class="search-input" placeholder="artist, art movement, country">
+            <form class="search-form">
+              <input type="text" name="search" class="search-input" placeholder="**DEMO -- search unavailable">
               <button type="submit" class="search-button">search</button>
             </form>
           </div>
@@ -102,17 +99,14 @@
       </div>
 
       <footer>
-        <style>
-        footer {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
-        </style>
         <div>
           <p id="copywrite">&copy;2016 Andrew Theis</p>
           <a href="#top">Back to top &raquo;</a>
         </div>
       </footer>
 
-      <script src="//code.jquery.com/jquery-2.2.3.js"></script>
-      <script src="{% static 'seekhue/seekhue.js' %}"></script>
+      <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+      <script src="seekhue.js"></script>
     </body>
   </div>
 </html>
