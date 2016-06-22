@@ -1,10 +1,9 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>Seek Hue - Color Quantizer</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'seekhue/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   </head>
   <div class="container">
@@ -13,12 +12,11 @@
 
         <div id="form-div">
 
-          <form action="{% url 'ack' %}" method="post" enctype="multipart/form-data" id="form">
-            {% csrf_token %}
+          <form method="post" enctype="multipart/form-data" id="form">
             <section class="form-text">
               <div class="form-left">
                 <p><a id="form-exit" href="#form" class="form-link">x</a></p>
-                <h2>Submission Guidelines</h2>
+                <h2>**DEMO**Submission Guidelines</h2>
                 <p>1. Have we already transformed that image? Check our database!</p>
                 <p>2. Image Quality - Think about the quality of the painting you're uploading. Avoid images with borders (noise) and select a version with the most accurate color quality.</p>
                 <p>3. GOOGLE! - Even if it is your favorite painting, by your favorite artist, that you wrote a ten page paper on in school, google it. Our database loves accuracy.</p>
