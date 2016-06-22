@@ -41,6 +41,9 @@ header {
   text-align: center;
   padding: 5px 0 20px 0;
   border-bottom: solid 5px rgba(30, 30, 30, .25);
+  background-image: url('img/background_img.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
@@ -180,6 +183,9 @@ footer {
   color: white;
   text-align: center;
   border-top: 10px solid rgba(30, 30, 30, .25);
+  background-image: url('img/background_img.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 footer div {
