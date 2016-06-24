@@ -30,7 +30,7 @@ def resize_pil_image(image):
 
 
 def to_float(x):
-    """."""
+    """Divide x by float 255.0 to refactor between 0 and 1."""
     return x / 255.0
 
 

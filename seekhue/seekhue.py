@@ -60,23 +60,25 @@ def main():
     6. Puts sorted pixel data into empty PIL image object.
     7. Saves Sorted image to disk.
     """
-    im = open_file_as_pil_image('test_imgs/munch_1.jpg')
-
-    im.show()
+    im = open_file_as_pil_image('../test_imgs/munch_1.jpg')
 
     width, height = im.size[0], im.size[1]
 
     if width > 1080 or height > 1080:
         im = resize_pil_image(im)
-        im.show()
 
     rgb_data = im.getdata()
     sorted_hls_data = refactor_and_sort_data(rgb_data)
 
+    print('original pixel data form: ' + str(rgb_data[0]))
+    print('sorted, hls data form: ' + str(sorted_hls_data[0]))
+
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_hls_data)
 
-    sorted_im.save('test_imgs/hls_sort_munch_1.png')
+    sorted_im.show()
+
+    # sorted_im.save('test_imgs/hls_sort_munch_1.png')
 
 
 if __name__ == '__main__':
