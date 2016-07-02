@@ -1,6 +1,7 @@
-"""Seekhue.py:."""
+"""Explore preprocessing by controlling PIL object dimensions.
 
-from __future__ import division
+In theory, should reproduce the effect of using mean() on a matrix of pixels.
+"""
 
 import colorsys
 
@@ -23,37 +24,32 @@ def resize_pil_image(image):
     height = image.size[1]
     ratio = width / height
     if ratio >= 1:
-        width = 1080
+        width = 810
         height = int(width / ratio)
     else:
-        height = 1080
+        height = 810
         width = int(height * ratio)
     return image.resize((width, height))
 
 
-def refactor_color_data(color_data):
-    """Take a list of RGB tuples and divide each value by 255."""
-    refactored_data = [(r / 255.0, g / 255.0, b / 255.0) for (r, g, b) in color_data]
-    return refactored_data
+def hls(x):
+    """Transformation function.
+
+    1. Refactors each Red Green and Blue value in our flattened list of pixel
+    tuples to a number between 0 and 1.
+    2. Uses the colorsys library to convert RGB values into Hue, Lightness,
+    and Saturation.
+    """
+    to_float = lambda x: x / 255.0
+    (r, g, b) = map(to_float, x)
+    h, l, s = colorsys.rgb_to_hls(r, g, b)
+    h = h if 0 < h else 1
+    return h, l, s
 
 
-def convert_refactored_rgb_data_to_hls(refactored_data):
-    """Convert refactored RGB tuples into HLS tuples."""
-    # hls_data = [colorsys.rgb_to_hls(r, g, b) for (r, g, b) in refactored_data]
-
-    hls_data = []
-
-    for (r, g, b) in refactored_data:
-        h, l, s = colorsys.rgb_to_hls(r, g, b)
-        hls_data.append((h, l, s))
-
-    return hls_data
-
-
-def multiply_hls_by_255(hls_data):
-    """Multiply each HLS value by 255 to un-refactor after conversion."""
-    un_factored_hls = [(int(h * 255), int(l * 255), int(s * 255)) for (h, l, s) in hls_data]
-    return un_factored_hls
+def refactor_and_sort_data(color_data):
+    """Covert RGB three-tuple and sort newly converted HLS data."""
+    return sorted(color_data, key=hls)
 
 
 def main():
@@ -67,21 +63,15 @@ def main():
     6. Puts sorted pixel data into empty PIL image object.
     7. Saves Sorted image to disk.
     """
-    im = open_file_as_pil_image('test_imgs/munch_1.jpg')
+    im = open_file_as_pil_image('../test_imgs/munch_1.jpg')
 
     width, height = im.size[0], im.size[1]
 
-    if width > 1080 or height > 1080:
+    if width > 810 or height > 810:
         im = resize_pil_image(im)
 
     rgb_data = im.getdata()
-
-    new_color_data = refactor_color_data(rgb_data)
-    hls_color_data = convert_refactored_rgb_data_to_hls(new_color_data)
-
-    sorted_hls_data = sorted(hls_color_data)
-
-    sorted_hls_data = multiply_hls_by_255(sorted_hls_data)
+    sorted_hls_data = refactor_and_sort_data(rgb_data)
 
     print('original pixel data form: ' + str(rgb_data[0]))
     print('sorted, hls data form: ' + str(sorted_hls_data[0]))
