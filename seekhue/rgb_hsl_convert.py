@@ -1,11 +1,13 @@
-import numpy as np
+"""."""
 
 from PIL import Image
 
+import numpy as np
 
-def open_numpy_pil_object():
+
+def open_numpy_pil_object(source):
     """."""
-    return np.asarray(Image.open())
+    return np.asarray(Image.open(source), int)
 
 
 def rgb_to_hsl_hsv(color_data, isHSV=True):
@@ -69,6 +71,12 @@ def rgb_to_hls(color_data):
 
 def main():
     """."""
+    source = '../test_imgs/vermeer_1.jpg'
+    image_obj = open_numpy_pil_object(source)
+
+    hsl_color_data = rgb_to_hls(image_obj)
+
+    print(hsl_color_data)
 
 
 if __name__ == '__main__':
