@@ -1,13 +1,6 @@
 """."""
 from PIL import Image
 
-class Image(object):
-    """docstring for Image"""
-    def __init__(self, artist, title, pixel_list):
-        self.artist = artist
-        self.title = title
-        self.pixels = pixel_list
-
 
 class Pixel(object):
     """."""
@@ -16,7 +9,8 @@ class Pixel(object):
         self.sat = sat
         self.val = val
 
-    def __str__(self):
+
+    def __repr__(self):
         return 'Pixel(hue: {}, saturation: {}, value: {})'.format(
             self.hue, self.sat, self.val
         )
@@ -25,6 +19,7 @@ class Pixel(object):
 def open_pil_image(source):
     """."""
     return Image.open(source)
+
 
 def rgb_to_hsv(r, g, b):
     """."""
@@ -72,11 +67,9 @@ def main():
     color_data_hsv = [rgb_to_hsv(r, g, b) for (r, g, b) in color_data_rgb]
     # print(list(color_data_hsv))
 
-# dict = {h : {s, v: tuple}}
 
+    # dict = {h : {s: {v: count}}}
     hue_to_count = {}
-    hue_list = []
-    hue_set = ()
     for h, s, v in color_data_hsv:
         if h not in hue_to_count:
             hue_to_count[h] = {}
@@ -86,13 +79,17 @@ def main():
             hue_to_count[h][s][v] = 1
         hue_to_count[h][s][v] += 1
 
-    print(hue_to_count.items())
-    print('-----')
-    print(hue_to_count.keys())
-    print('-----')
-    print(len(hue_to_count.keys()))
-    print(len(hue_to_count))
-    print(width * height)
+    # classes
+    pixel_list = []
+    for h, s, v in color_data_hsv:
+        pixel_list.append(Pixel(h, s, v))
+
+    red_list = []
+    for pixel in pixel_list:
+        if pixel.hue >= 345 or pixel.hue < 15:
+            red_list.append(pixel)
+
+    print(len(red_list))
 
     # print(hue_to_count)
     # print(len(hue_to_count))
