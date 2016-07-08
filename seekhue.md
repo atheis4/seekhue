@@ -17,7 +17,7 @@ This web app will take image files, deconstruct them, analyze the pixel color va
 
 The main page will feature an upload bar that accepts a few file formats. Below the upload bar will be a small gallery of populated from our data base of past transformations.
 
-Once a user has hit submit, a new window will appear showing the original image as well as the hue-map side-by-side. The upload bar will appear above the new window for future uploads. The original image as well as hue-map will be created using JavaScript objects.
+Once a user has hit submit, a new window will appear showing the original image as well as the sorted image side-by-side. The upload bar will appear above the new window for future uploads. The original image as well as hue-map will be created using JavaScript objects.
 
 
 **Data Model**
@@ -27,12 +27,9 @@ Each image will represent the source file submitted by a user or uploaded for te
 
 They will contain:
 *Unique ID*
-*Color Analysis*
-  Statistics:
-    Which hues are present (rgb translated to hexadecimal)?
-    How many pixels of each hue are there?
-*Hue-Map Data*
-  A sorted, array-like object that reorders the pixel color array created in image processing.
+*File of original painting*
+*File of sorted painting*
+*Painting Metadata, e.g. artist, year, movement, etc.*
 
 
 **Technical Components**

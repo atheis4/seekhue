@@ -6,7 +6,7 @@ from django.db import models
 
 
 def unique_file_name(_, filename):
-    """."""
+    """Generate random prefix for image files saved to model class."""
     random_prefix = str(uuid.uuid4()) + '_'
     return random_prefix + filename
 

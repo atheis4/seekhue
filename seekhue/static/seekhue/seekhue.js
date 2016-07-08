@@ -1,54 +1,56 @@
 'use strict';
 
-var submitLink = $('#show-form');
+/**
+defines the interactive elements on my web app
+*/
+function registerEventHandlers() {
+  // shows the hidden form div on click of form button
+  $('#show-form').on('click', function() {
+    var formDiv = $('#form-div');
+    formDiv.fadeIn();
+  });
 
-$(submitLink).on('click', function() {
-  var formDiv = $('#form-div');
-  formDiv.fadeIn();
-});
+  // hides the form div on click of form 'X'
+  $('#form-exit').on('click', function() {
+    var formDiv = $('#form-div');
+    formDiv.fadeOut();
+  });
 
-var formCloseLink = $('#form-exit');
+  // changes the source of the target image to the sorted-image path
+  $('img').on('mouseover', function(event) {
+    var seekhueSortSrc = $(event.target).attr('data-sort-src');
+    $(event.target).attr('src', seekhueSortSrc);
+  });
 
-$(formCloseLink).on('click', function() {
-  var formDiv = $('#form-div');
-  formDiv.fadeOut();
-});
+  // changes the src of the target image back to the original-image path
+  $('img').on('mouseout', function() {
+    var originalSrc = $(event.target).attr('data-orig-src');
+    $(event.target).attr('src', originalSrc);
+  });
 
+  // changes css properties of link text and background on mouseover
+  $('.nav-link').on('mouseover', function(event) {
+    $(event.target).css('background-color', 'rgba(255, 255, 255, .75)');
+    $(event.target).css('color', 'black');
+  });
 
-var imgEls = $('img');
+  // changes css properties of link back to default on mouseout
+  $('.nav-link').on('mouseout', function(event) {
+    $(event.target).css('background-color', 'rgba(0, 0, 0, .5)');
+    $(event.target).css('color', 'white');
+  });
 
-$(imgEls).on('mouseover', function(event) {
-  var seekhueSortSrc = $(event.target).attr('data-sort-src');
-  $(event.target).attr('src', seekhueSortSrc);
-});
+  // changes css properties of search button on mouseover
+  $('.search-button').on('mouseover', function(event) {
+    $(event.target).css('background-color', 'lightgreen');
+    $(event.target).css('color', 'white');
+  });
 
-$(imgEls).on('mouseout', function() {
-  var originalSrc = $(event.target).attr('data-orig-src');
-  $(event.target).attr('src', originalSrc);
-});
+  // changes css properties of search button back to default on mouseout
+  $('.search-button').on('mouseout', function(event) {
+    $(event.target).css('background-color', 'white');
+    $(event.target).css('color', 'black');
+  });
+}
 
-
-var navLinkEls = $('.nav-link');
-
-$(navLinkEls).on('mouseover', function(event) {
-  $(event.target).css('background-color', 'rgba(255, 255, 255, .75)');
-  $(event.target).css('color', 'black');
-});
-
-$(navLinkEls).on('mouseout', function(event) {
-  $(event.target).css('background-color', 'rgba(0, 0, 0, .5)');
-  $(event.target).css('color', 'white');
-});
-
-
-var searchButtonEl = $('.search-button');
-
-$(searchButtonEl).on('mouseover', function() {
-  $(searchButtonEl).css('background-color', 'lightgreen');
-  $(searchButtonEl).css('color', 'white');
-});
-
-$(searchButtonEl).on('mouseout', function() {
-  $(searchButtonEl).css('background-color', 'white');
-  $(searchButtonEl).css('color', 'black');
-});
+$(document).ready(registerEventHandlers);

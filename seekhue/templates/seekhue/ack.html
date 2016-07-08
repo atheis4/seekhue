@@ -72,7 +72,6 @@
           </div>
         </section>
 
-
         <section>
           <h2 id="submit-msg"><a href="{% url 'index' %}">submit successful!</a></h2>
         </section>
@@ -81,27 +80,28 @@
           <section class="img-container indv-img">
             <div class="img-tile">
               <img src="{{ painting.source.url }}" alt="Original Image">
-              <p><i>{{ painting.title }}</i><br>{{ painting.artist }}</p>
+              <p><i>{{ painting.title }}</i>  ({{ painting.year }})<br>{{ painting.artist }}</p>
             </div>
             <div class="img-tile">
               <img src="{{ painting.seekhue_sort.url }}" alt="Seekhue sort">
             </div>
           </section>
         </div>
+      </div>
 
-        <footer>
-          <style>
-          footer {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
-          </style>
-          <div>
-            <p id="copywrite">&copy;2016 Andrew Theis</p>
-            <a href="#top">Back to top &raquo;</a>
-          </div>
-        </footer>
+      <footer>
+        <style>
+        footer {background-image:url("{% url 'random' %}"); background-repeat: no-repeat; background-size: cover;}
+        </style>
+        <div>
+          <p id="copywrite">&copy;2016 Andrew Theis</p>
+          <a href="#top">Back to top &raquo;</a>
+        </div>
+      </footer>
 
       <script src="//code.jquery.com/jquery-2.2.3.js"></script>
       <script src="{% static 'seekhue/seekhue.js' %}"></script>
-    </div>
+
     </body>
   </div>
 </html>

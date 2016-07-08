@@ -1,4 +1,7 @@
-"""Take an image and return a copy with all pixel values sorted by hue."""
+"""Explore preprocessing by controlling PIL object dimensions.
+
+In theory, should reproduce the effect of using mean() on a matrix of pixels.
+"""
 
 import colorsys
 
@@ -21,10 +24,10 @@ def resize_pil_image(image):
     height = image.size[1]
     ratio = width / height
     if ratio >= 1:
-        width = 1080
+        width = 405
         height = int(width / ratio)
     else:
-        height = 1080
+        height = 405
         width = int(height * ratio)
     return image.resize((width, height))
 
@@ -64,7 +67,7 @@ def main():
 
     width, height = im.size[0], im.size[1]
 
-    if width > 1080 or height > 1080:
+    if width > 540 or height > 540:
         im = resize_pil_image(im)
 
     rgb_data = im.getdata()
@@ -76,9 +79,10 @@ def main():
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_hls_data)
 
+    print(sorted_im.size[0], sorted_im.size[1])
     sorted_im.show()
 
-    # sorted_im.save('test_imgs/hls_sort_munch_1.png')
+    # sorted_im.save('test_imgs/hls_sort_munch_1.2.png')
 
 
 if __name__ == '__main__':

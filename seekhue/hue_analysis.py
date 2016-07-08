@@ -1,4 +1,4 @@
-"""Take an image and return a copy with all pixel values sorted by hue."""
+"""Seekhue.py:."""
 
 import colorsys
 
@@ -29,6 +29,11 @@ def resize_pil_image(image):
     return image.resize((width, height))
 
 
+def to_float(x):
+    """Divide x by float 255.0 to refactor between 0 and 1."""
+    return x / 255.0
+
+
 def hls(x):
     """Transformation function.
 
@@ -37,7 +42,6 @@ def hls(x):
     2. Uses the colorsys library to convert RGB values into Hue, Lightness,
     and Saturation.
     """
-    to_float = lambda x: x / 255.0
     (r, g, b) = map(to_float, x)
     h, l, s = colorsys.rgb_to_hls(r, g, b)
     h = h if 0 < h else 1
@@ -70,12 +74,12 @@ def main():
     rgb_data = im.getdata()
     sorted_hls_data = refactor_and_sort_data(rgb_data)
 
-    print('original pixel data form: ' + str(rgb_data[0]))
-    print('sorted, hls data form: ' + str(sorted_hls_data[0]))
+    # print('original pixel data form: ' + str(rgb_data[0]))
+    # print('sorted, hls data form: ' + str(sorted_hls_data[0]))
 
     sorted_im = create_empty_pil_image(im)
     sorted_im.putdata(sorted_hls_data)
-
+    #
     sorted_im.show()
 
     # sorted_im.save('test_imgs/hls_sort_munch_1.png')
