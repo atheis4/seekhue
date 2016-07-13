@@ -17,6 +17,13 @@ class Pixel(object):
             self.hue, self.sat, self.val
         )
 
+    def __eq__(self, other):
+        return(
+            self.hue == other.hue and
+            self.sat == other.sat and
+            self.val == other.val
+        )
+
 
 def open_pil_image(source):
     """."""
@@ -49,7 +56,7 @@ def rgb_to_hsv(r, g, b):
 
 def main():
     """."""
-    source = '../test_imgs/munch_1.jpg'
+    source = 'munch_1.jpg'
     pil_im = open_pil_image(source)
     width, height = pil_im.size[0], pil_im.size[1]
     ratio = width / height
@@ -85,13 +92,15 @@ def main():
     for h, s, v in color_data_hsv:
         pixel_list.append(Pixel(h, s, v))
 
-    red_list = []
-    for pixel in pixel_list:
-        if pixel.hue >= 345 or pixel.hue < 15:
-            red_list.append(pixel)
+    equal = 0
 
-    blue_list = []
-    
+    for pixel in pixel_list:
+        for other in pixel_list:
+            if pixel == other:
+                equal += 1
+
+    print(equal)
+
 
     # print(hue_to_count)
     # print(len(hue_to_count))
