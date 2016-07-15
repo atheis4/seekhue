@@ -2,6 +2,9 @@
 
 from PIL import Image
 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
 
 class Pixel(object):
     """."""
@@ -56,7 +59,7 @@ def rgb_to_hsv(r, g, b):
 
 def main():
     """."""
-    source = 'munch_1.jpg'
+    source = 'mona_lisa.jpg'
     pil_im = open_pil_image(source)
     width, height = pil_im.size[0], pil_im.size[1]
     ratio = width / height
@@ -74,18 +77,8 @@ def main():
     # print(list(color_data_rgb))
 
     color_data_hsv = [rgb_to_hsv(r, g, b) for (r, g, b) in color_data_rgb]
-    # print(list(color_data_hsv))
 
-    # dict = {h : {s: {v: count}}}
-    hue_to_count = {}
-    for h, s, v in color_data_hsv:
-        if h not in hue_to_count:
-            hue_to_count[h] = {}
-        if s not in hue_to_count[h]:
-            hue_to_count[h][s] = {}
-        if v not in hue_to_count[h][s]:
-            hue_to_count[h][s][v] = 1
-        hue_to_count[h][s][v] += 1
+    color_rgb_float = [(r / 255.0, g / 255.0, b / 255.0) for (r, g, b) in color_data_rgb]
 
     # classes
     pixel_list = []
@@ -94,12 +87,28 @@ def main():
 
     equal = 0
 
-    for pixel in pixel_list:
-        for other in pixel_list:
-            if pixel == other:
-                equal += 1
+    # Create x, y, z lists from RGB data
+    x = []
+    y = []
+    z = []
 
-    print(equal)
+    for (r, g, b) in color_data_rgb:
+        x.append(r)
+        y.append(g)
+        z.append(b)
+
+    # Graph RGB data
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+
+    ax.scatter(x, y, z, c=color_rgb_float, linewidth=0.0)
+    ax.set_xlabel('red value')
+    ax.set_ylabel('green value')
+    ax.set_zlabel('blue value')
+
+    plt.show()
+
 
 
     # print(hue_to_count)
