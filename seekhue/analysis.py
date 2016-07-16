@@ -5,6 +5,8 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+from bokeh import mpl
+from bokeh.plotting import output_file, show
 
 class Pixel(object):
     """."""
@@ -59,7 +61,7 @@ def rgb_to_hsv(r, g, b):
 
 def main():
     """."""
-    source = 'mona_lisa.jpg'
+    source = 'eyck_source.jpg'
     pil_im = open_pil_image(source)
     width, height = pil_im.size[0], pil_im.size[1]
     ratio = width / height
@@ -99,15 +101,18 @@ def main():
 
     # Graph RGB data
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-
+    ax = fig.add_subplot(1, 1, 1, projection='3d')
 
     ax.scatter(x, y, z, c=color_rgb_float, linewidth=0.0)
     ax.set_xlabel('red value')
     ax.set_ylabel('green value')
     ax.set_zlabel('blue value')
 
-    plt.show()
+    output_file('van_eyck.html', title='3D Color Map of Arnolfini Portrait')
+
+    plt.draw()
+
+    show(mpl.to_bokeh(ax))
 
 
 
