@@ -12,7 +12,7 @@ def rgb_to_hsl_hsv(color_data, isHSV=True):
     """
     Convert RGB image data to HSV or HSL.
     :color_data: 3D array. Returned value of numpy.asarray(Image.open(...), int)
-    :isHSV: True = HSV, Flase = HSL
+    :isHSV: True = HSV, False = HSL
     :return: H,S,L or H,S,V array
     """
     R, G, B = color_data.T
