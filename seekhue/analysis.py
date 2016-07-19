@@ -103,7 +103,7 @@ def rgb_to_hls(r, g, b):
     if max_val == 0:
         s = 0
     else:
-        s = (difference / (1 - abs((2 * l) - 1)))
+        s = difference / (1 - abs((2 * l) - 1))
 
     return h, l, s
 
@@ -129,7 +129,8 @@ def main():
 
     color_data_hsv = [rgb_to_hsv(r, g, b) for (r, g, b) in color_data_rgb]
 
-    color_data_hls = [rgb_to_hls(r, g, b) for (r, g, b) in color_data_rgb]
+# Zero Division Error
+    # color_data_hls = [rgb_to_hls(r, g, b) for (r, g, b) in color_data_rgb]
 
     color_rgb_float = [(r / 255.0, g / 255.0, b / 255.0) for (r, g, b) in color_data_rgb]
 
@@ -162,14 +163,13 @@ def main():
 
     # output_file('van_eyck.html', title='3D Color Map of Arnolfini Portrait')
 
-    # plt.draw()
-
     # show(mpl.to_bokeh(ax))
+
+    # length of list of unique pixels
+    # print(len(set(color_data_rgb)))
 
     plt.show()
 
-    # print(hue_to_count)
-    # print(len(hue_to_count))
 
 if __name__ == '__main__':
     main()
