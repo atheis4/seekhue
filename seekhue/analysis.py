@@ -147,13 +147,9 @@ def main():
         y.append(g)
         z.append(b)
 
-    pixel_list = []
-    for h, s, v in color_data_hsv:
-        pixel_list.append(Pixel(h, s, v))
-
-
-
-
+    # pixel_list = []
+    # for h, s, v in color_data_hsv:
+    #     pixel_list.append(Pixel(h, s, v))
 
     # Graph RGB data
     fig = plt.figure()
