@@ -14,16 +14,22 @@ class Pixel(object):
     """."""
 
     def __init__(self, hsv, rgb):
+        """Pixel initialization.
+
+        hsv: list of pixel values, tuple of hue, saturation, and value
+        rgb: list of pixel values, tuple of red, blue, green values
+        """
         self.hsv = hsv
         self.rgb = rgb
 
-
     def __repr__(self):
+        """."""
         return 'Pixel(hsv: {}, rgb: {})'.format(
             self.hsv, self.rgb
         )
 
     def __eq__(self, other):
+        """."""
         return(
             self.hsv == other.hsv and
             self.rgb == other.rbg
