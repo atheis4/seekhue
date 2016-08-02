@@ -1,6 +1,6 @@
 # SeekHue
 
-SeekHue takes an image file, creates a three-tuple of the image pixel color values, and sorts them by their hue, lightness, and saturation--creating a visual representation of color distribution. Visit the proposal [here](/seek_hue.md).
+SeekHue takes an image file, creates a three-tuple of the image pixel color values, and sorts them by their hue, lightness, and saturation--creating a visual representation of color distribution. Visit the proposal [here](/seekhue.md).
 
 # Setup
 
