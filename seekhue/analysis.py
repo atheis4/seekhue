@@ -2,13 +2,6 @@
 
 from PIL import Image
 
-from bokeh import mpl
-from bokeh.plotting import output_file, show
-
-import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d import Axes3D
-
 
 class Pixel(object):
     """."""
@@ -61,7 +54,6 @@ def rgb_to_hsv(r, g, b):
     Cmin = min(R', G', B')
     Difference = Cmax - Cmin
     """
-
     # Divide each value by 255 to refactor it as a new float between 0 and 1
     r, g, b = r / 255.0, g / 255.0, b / 255.0
     # Identify maximum r, g, b value
@@ -131,7 +123,6 @@ def main():
     pil_im = pil_im.resize((width, height))
 
     color_data_rgb = pil_im.getdata()
-    # print(list(color_data_rgb))
 
     color_data_hsv = [rgb_to_hsv(r, g, b) for (r, g, b) in color_data_rgb]
 
@@ -143,38 +134,6 @@ def main():
     # classes
 
     equal = 0
-
-    # Create x, y, z lists from RGB data
-    x = []
-    y = []
-    z = []
-
-    for (r, g, b) in color_data_rgb:
-        x.append(r)
-        y.append(g)
-        z.append(b)
-
-    # pixel_list = []
-    # for h, s, v in color_data_hsv:
-    #     pixel_list.append(Pixel(h, s, v))
-
-    # Graph RGB data
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-
-    ax.scatter(x, y, z, c=color_rgb_float, linewidth=0.0)
-    ax.set_xlabel('red value')
-    ax.set_ylabel('green value')
-    ax.set_zlabel('blue value')
-
-    # output_file('van_eyck.html', title='3D Color Map of Arnolfini Portrait')
-
-    # show(mpl.to_bokeh(ax))
-
-    # length of list of unique pixels
-    # print(len(set(color_data_rgb)))
-
-    plt.show()
 
 
 if __name__ == '__main__':
